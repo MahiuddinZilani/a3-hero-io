@@ -15,7 +15,7 @@ const AllApps = () => {
       <p>
         Explore All Apps on the Market developed by us. We code for Millions
       </p>
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <p>({allApps.length}) Apps Found</p>
         <label className="input">
           <svg

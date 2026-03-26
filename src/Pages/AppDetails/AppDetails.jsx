@@ -16,6 +16,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { addToStoredDB } from "../../utilities/addToDB";
 // import { RechartsDevtools } from "@recharts/devtools";
 
 const AppDetails = () => {
@@ -38,7 +39,12 @@ const AppDetails = () => {
     ratings,
   } = singleAppData;
 
-  console.log(singleAppData);
+  const handleInstallNow = (id) => {
+    // console.log(id);
+    addToStoredDB(id);
+  };
+
+  // console.log(singleAppData);
   //   console.log(allAppsData);
   //   console.log(typeof id);
 
@@ -81,8 +87,13 @@ const AppDetails = () => {
             </div>
           </div>
           {/* Install Button  */}
-          <div className="card-actions ">
-            <button className="btn btn-primary">Install Now ({size}) MB</button>
+          <div className="card-actions">
+            <button
+              onClick={() => handleInstallNow(id)}
+              className="btn btn-primary"
+            >
+              Install Now ({size}) MB
+            </button>
           </div>
         </div>
       </div>
