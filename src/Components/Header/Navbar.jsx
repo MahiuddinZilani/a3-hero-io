@@ -1,12 +1,19 @@
 import { House, HouseIcon } from "lucide-react";
 import React from "react";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const links = (
     <>
-      <li>Home</li>
-      <li>Apps</li>
-      <li>Installation</li>
+      <Link to="/" className="mr-2">
+        <li>Home</li>
+      </Link>
+      <Link to="/apps" className="mr-2">
+        <li>Apps</li>
+      </Link>
+      <Link to="/installation" className="mr-2">
+        <li>Installation</li>
+      </Link>
     </>
   );
 
