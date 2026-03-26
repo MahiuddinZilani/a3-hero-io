@@ -4,22 +4,16 @@ import {
   Star,
   StarIcon,
 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { ToastContainer, toast } from "react-toastify";
+
 import { addToStoredDB } from "../../utilities/addToDB";
 // import { RechartsDevtools } from "@recharts/devtools";
 
 const AppDetails = () => {
+  const [install, setInstall] = useState(false);
   const { id } = useParams();
   const appId = parseInt(id);
   const allAppsData = useLoaderData();
@@ -40,8 +34,15 @@ const AppDetails = () => {
   } = singleAppData;
 
   const handleInstallNow = (id) => {
-    // console.log(id);
-    addToStoredDB(id);
+    const result = addToStoredDB(id);
+
+    if (result === "exists") {
+      toast.warning("App already installed!");
+      setInstall(true);
+    } else {
+      toast.success(`${title} Installed Successfully`);
+      setInstall(true);
+    }
   };
 
   // console.log(singleAppData);
@@ -92,11 +93,13 @@ const AppDetails = () => {
               onClick={() => handleInstallNow(id)}
               className="btn btn-primary"
             >
-              Install Now ({size}) MB
+              {install ? "Installed" : `Install Now (${size}) MB`}
             </button>
           </div>
         </div>
       </div>
+
+      <ToastContainer />
 
       {/* Ratings chart  */}
       <div className="divider divider-default"></div>

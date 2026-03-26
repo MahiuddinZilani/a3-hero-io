@@ -38,7 +38,10 @@ const InstalledApp = ({ app, handleUninstall }) => {
       </div>
 
       {/* <button className="btn btn-ghost"></button> */}
-      <button onClick={() => handleUninstall(id)} className="btn btn-primary">
+      <button
+        onClick={() => handleUninstall(id, title)}
+        className="btn btn-primary"
+      >
         Uninstall
       </button>
     </li>

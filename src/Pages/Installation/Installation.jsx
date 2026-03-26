@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router";
 import { getInstalledApp } from "../../utilities/addToDB";
 import InstalledApp from "../../Components/InstalledApp/InstalledApp";
 import { deleteFromDB } from "../../utilities/deleteFromDB";
+import { ToastContainer, toast } from "react-toastify";
 
 const Installation = () => {
   const [installedAppList, setInstalledAppList] = useState([]);
@@ -36,12 +37,13 @@ const Installation = () => {
     }
   };
 
-  const handleUninstall = (id) => {
+  const handleUninstall = (id, title) => {
     // console.log(id);
     const updatedList = installedAppList.filter((app) => app.id !== id);
     setInstalledAppList(updatedList);
 
     deleteFromDB(id);
+    toast(`${title} un-installed from your Device`);
   };
 
   //   console.log(installedAppList);
@@ -106,6 +108,8 @@ const Installation = () => {
           ))}
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };

@@ -13,13 +13,11 @@ const addToStoredDB = (id) => {
   const storedAppsData = getInstalledApp();
 
   if (storedAppsData.includes(id)) {
-    alert("already exist");
+    return "exists";
   } else {
     storedAppsData.push(id);
-
-    const data = JSON.stringify(storedAppsData);
-    localStorage.setItem("installedApp", data);
-    console.log(storedAppsData);
+    localStorage.setItem("installedApp", JSON.stringify(storedAppsData));
+    return "added";
   }
 };
 
